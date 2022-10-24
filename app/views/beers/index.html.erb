@@ -1,23 +1,15 @@
 <div class="container px-4 py-5" id="custom-cards">
   <h2 class="pb-2 border-bottom">Beers</h2>
 
-
   <div class="form-outline">
   <%= form_with(url: beers_path, method: :get, data: { controller: "search-form", turbo_frame: "beers", turbo_action: "advance" }) do |form| %>
       <%= form.text_field :query, placeholder: "Type beer name", data: { action: "input->search-form#search"} %>
     <% end %>
   </div>
   <br>
-<!--  <div class="row row-cols-2 row-cols-md-1 g-4">-->
-    <%#= turbo_frame_tag "beers" do %>
-      <%#= render partial: "beer", collection: @beers %>
-    <%# end %>
-<!--  </div>-->
   <div class="row row-cols-2 row-cols-md-1 g-4">
     <%= turbo_frame_tag "beers" do %>
       <%= render partial: "beer", collection: @beers %>
-      <div id="beer_cards"></div>
     <% end %>
-    <%= render "/partials/load_more"%>
   </div>
 </div>
