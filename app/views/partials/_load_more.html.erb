@@ -1,0 +1,5 @@
+<% page ||= page || 1 %>>
+<% url ||= url_for(request.params.merge(format: :turbo_stream, page: page)) %>
+<div id="load_more">
+  <%= turbo_frame_tag "load_more", src: url, loading: :lazy %>
+</div>

@@ -1,0 +1,13 @@
+<%#= turbo_frame_tag "beers" do %>
+  <%#= render partial: "beer", collection: @beers %>
+<%# end %>
+
+<%= turbo_stream.append "beer_cards" do %>
+  <%= render partial: "beer", collection: @beers %>
+<% end %>
+
+<% if @next_page.present? %>
+  <%= turbo_stream.replace "load_more" do %>
+    <%= render partial: "/partials/load_more", locals: { page: @next_page } %>
+  <% end %>
+<% end %>
